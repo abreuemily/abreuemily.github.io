@@ -3,17 +3,17 @@
 }
 
 body {
-    background-color: #666;
+    background-color: #DEB887;
 }
 
 header {
-    background-color: rgb(60, 124, 103);
+    background-color: rgb(128, 0, 0);
     padding: 15px;
     color: #fff;
 }
 
 main {
-    background-color: aquamarine;
+    background-color: #FA8072;
     width: 70%;
     margin: auto;
     padding: 20px;
