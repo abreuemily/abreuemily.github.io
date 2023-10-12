@@ -19,7 +19,7 @@ header {
 
 nav {
     height: 500px;
-    background-color: aquamarine;
+    background-color: red;
     padding: 10px;
     font-size: 30px;
 }
@@ -27,6 +27,6 @@ nav {
 section {
     text-align: center;
     height: 500px;
-    background-color: coral;
+    background-color: #32CD32;
     font-size: 25px;
 }
