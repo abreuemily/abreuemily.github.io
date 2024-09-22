@@ -55,24 +55,29 @@
 
     <script>
 
-        const SUPABASE_URL = "https://chptkbsncebafurislzn.supabase.co";  
-        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNocHRrYnNuY2ViYWZ1cmlzbHpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjY1MTc4MzUsImV4cCI6MjA0MjA5MzgzNX0.J92mx4sfidBKqAKsg4YBqTbzQoqsq-4XH7Kh91jNWaI";  
+        const SUPABASE_URL = "https://chptkbsncebafurislzn.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNocHRrYnNuY2ViYWZ1cmlzbHpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjY1MTc4MzUsImV4cCI6MjA0MjA5MzgzNX0.J92mx4sfidBKqAKsg4YBqTbzQoqsq-4XH7Kh91jNWaI";
         const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         $(document).ready(function () {
+            console.log("jQuery está funcionando!");
 
-            
-            $('#btn-novo').on('click', function () {
+            // Função para mostrar o formulário
+            $('#btn-novo').click(function () {
                 $('#form-contato').show();
+                console.log("Botão Novo foi clicado");
             });
 
-            
-            $('#btn-cancelar').on('click', function () {
+            // Função para ocultar o formulário
+            $('#btn-cancelar').click(function () {
                 $('#form-contato').hide();
+                console.log("Botão Cancelar foi clicado");
             });
 
-            
-            $('#btn-salvar').on('click', async function () {
+            // Função para salvar o contato
+            $('#btn-salvar').click(async function () {
+                console.log("Botão Salvar foi clicado");
+
                 let nome = $('#input-nome').val();
                 let telefone = $('#input-telefone').val();
                 let email = $('#input-email').val();
@@ -87,22 +92,24 @@
                     } else {
                         alert("Contato salvo com sucesso!");
                         $('#form-contato').hide();
-                        listarContatos();  
+                        listarContatos();  // Atualiza a lista de contatos
                     }
                 } else {
                     alert("Por favor, preencha todos os campos.");
                 }
             });
 
-    
-            $('#btn-buscar').on('click', async function () {
+            // Função para buscar contato pelo nome
+            $('#btn-buscar').click(async function () {
+                console.log("Botão Buscar foi clicado");
+
                 let nomeBusca = $('#input-buscar').val();
 
                 if (nomeBusca) {
                     const { data, error } = await supabase
                         .from('CONTATO')
                         .select()
-                        .ilike('nome', `%${nomeBusca}%`);  
+                        .ilike('nome', `%${nomeBusca}%`);  // Busca insensível a maiúsculas e minúsculas
 
                     if (error) {
                         alert("Erro ao buscar contato: " + error.message);
@@ -116,7 +123,7 @@
                 }
             });
 
-            
+            // Função para listar todos os contatos
             async function listarContatos() {
                 const { data, error } = await supabase
                     .from('CONTATO')
@@ -129,10 +136,10 @@
                 }
             }
 
-            
+            // Função para exibir os contatos na tabela
             function mostrarContatos(contatos) {
                 let tabela = $('#tabela-contatos');
-                tabela.empty();  
+                tabela.empty();  // Limpa a tabela antes de adicionar novos dados
                 let header = `<tr><th>Nome</th><th>Telefone</th><th>Email</th></tr>`;
                 tabela.append(header);
 
@@ -142,7 +149,7 @@
                 });
             }
 
-        
+            // Carregar os contatos ao iniciar a página
             listarContatos();
         });
     </script>
